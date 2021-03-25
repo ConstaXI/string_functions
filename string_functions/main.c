@@ -33,6 +33,7 @@ char *strcat(char *s1, const char *s2) {
 
     // Faz a string s1 apontar para o início dela novamente.
     s1 = s1 - strlen(s1) - strlen(s2);
+    s2 = s2 - strlen(s2);
 
     return s1;
 }
@@ -40,10 +41,10 @@ char *strcat(char *s1, const char *s2) {
 int strcmp(const char *str0, const char *str1) {
     const char *ptr0, *ptr1;
 
-    for(ptr0 = str0, ptr1 = str1; (*ptr0 || *ptr1) != '\0'; ++ptr0, ++ptr1) {
-        if(*ptr0 == '\0' && *ptr1 != '\0' && *ptr0 != *ptr1) {
+    for (ptr0 = str0, ptr1 = str1; (*ptr0 || *ptr1) != '\0'; ++ptr0, ++ptr1) {
+        if (*ptr0 == '\0' && *ptr1 != '\0' && *ptr0 != *ptr1) {
             return -1;
-        } else if(*ptr0 != '\0' && *ptr1 == '\0' && *ptr0 != *ptr1) {
+        } else if (*ptr0 != '\0' && *ptr1 == '\0' && *ptr0 != *ptr1) {
             return 1;
         }
     }
@@ -52,8 +53,8 @@ int strcmp(const char *str0, const char *str1) {
 }
 
 int strend(char *s, const char *t) {
-    for(s = s + strlen(t) - 1; *s != '\0'; ++s, ++t) {
-        if(*s != *t) {
+    for (s = s + strlen(t) - 1; *s != '\0'; ++s, ++t) {
+        if (*s != *t) {
             return 0;
         }
     }
@@ -76,7 +77,9 @@ int main() {
 
     printf("arr_1 is in the final of arr_0? %d\n", strend(arr_0, arr_1));
 
-    strcat(arr_0, arr_1);
+    char* arr_2 = strcat(arr_0, arr_1);
+
+    printf("arr_2:\n%s", arr_2);
 
     puts(arr_0);
 
